@@ -1,0 +1,89 @@
+name:          sdlhs
+version:       0.0.0
+synopsis:      bindings to libsdl also known as Simple DirectMedia Layer
+homepage:      https://github.com/kkardzis/sdlhs
+category:      Graphics
+
+author:        Krzysztof Kardzis <kkardzis@gmail.com>
+maintainer:    Krzysztof Kardzis <kkardzis@gmail.com>
+copyright:     Copyright (c) 2014 Krzysztof Kardzis
+license:       OtherLicense
+license-file:  LICENSE
+
+stability:     Experimental
+build-type:    Simple
+cabal-version: >=1.8
+
+description:
+  Package @sdlhs@ provides a mid-level Haskell interface to @libsdl@
+  also known as <http://www.libsdl.org/ Simple DirectMedia Layer>.
+  SDL is a cross-platform development library designed to provide
+  low level access to audio, keyboard, mouse, joystick, and graphics
+  hardware via OpenGL and Direct3D.
+  .
+  More information about @sdlhs@, such as tutorials or examples,
+  may be found in the <docs/#/README.md documentation> section.
+  .
+  Package is distributed under the
+  <http://choosealicense.com/licenses/isc/ ISC License>
+  (MIT\/BSD-style, see <LICENSE> file for details).
+  .
+  <<//ga-beacon.appspot.com/UA-53767359-1/sdlhs>>
+
+
+-------------------------------------------------------------------------------
+extra-source-files:
+  Graphics/UI/SDL00/SDL2-2.0.3/COPYING
+  Graphics/UI/SDL00/SDL2-2.0.3/*.h
+  README.md
+
+-- extra-doc-files:
+--   docs/examples/*.hs
+--   docs/index.html
+--   docs/*.md
+
+
+-------------------------------------------------------------------------------
+library
+  ghc-options: -Wall -fwarn-tabs
+  build-tools: hsc2hs
+
+  build-depends:
+    base ==4.*, rtld
+
+  exposed-modules:
+    Graphics.UI.SDL00
+    Graphics.UI.SDL20
+
+  other-modules:
+    Graphics.UI.SDL00.LibCC
+    Graphics.UI.SDL00.LibCT
+    Graphics.UI.SDL00.LibHC
+    Graphics.UI.SDL00.LibHT
+    Graphics.UI.SDL00.LibLD
+
+  c-sources:
+    Graphics/UI/SDL00/LibC0.c
+
+  include-dirs:
+    Graphics/UI/SDL00
+
+
+-------------------------------------------------------------------------------
+test-suite hspec
+  type:           exitcode-stdio-1.0
+  build-depends:  base, hspec, sdlhs
+  ghc-options:    -Wall -fwarn-tabs
+  main-is:        Spec.hs
+  hs-source-dirs: test
+
+  other-modules:
+    Graphics.UI.SDL00Spec
+    Graphics.UI.SDL20Spec
+
+
+-------------------------------------------------------------------------------
+source-repository head
+  location: https://github.com/kkardzis/sdlhs
+  type:     git
+
