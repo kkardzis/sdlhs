@@ -25,7 +25,80 @@ enum { SDL20 };
 #define ADRTAB sdlADRTAB
 
 SYMTABENTRY SYMTAB[] =
-  { {SDL20, SDLXX, "SDL_AddEventWatch"}
+/* ------------------------------------------------------------------------- */
+/* ### SDL.h ############################################################### */
+/* ------------------------------------------------------------------------- */
+  { {SDL20, SDLXX, "SDL_Init"}
+  , {SDL20, SDLXX, "SDL_InitSubSystem"}
+  , {SDL20, SDLXX, "SDL_QuitSubSystem"}
+  , {SDL20, SDLXX, "SDL_WasInit"}
+  , {SDL20, SDLXX, "SDL_Quit"}
+ 
+/* ------------------------------------------------------------------------- */
+/* ### SDL_hints.h ######################################################### */
+/* ------------------------------------------------------------------------- */
+
+/* ------------------------------------------------------------------------- */
+/* ### SDL_error.h ######################################################### */
+/* ------------------------------------------------------------------------- */
+  , {SDL20, SDLXX, "SDL_SetError"}
+  , {SDL20, SDLXX, "SDL_GetError"}
+  , {SDL20, SDLXX, "SDL_ClearError"}
+
+/* ------------------------------------------------------------------------- */
+/* ### SDL_log.h ########################################################### */
+/* ------------------------------------------------------------------------- */
+  , {SDL20, SDLXX, "SDL_LogSetAllPriority"}
+  , {SDL20, SDLXX, "SDL_LogSetPriority"}
+  , {SDL20, SDLXX, "SDL_LogGetPriority"}
+  , {SDL20, SDLXX, "SDL_LogResetPriorities"}
+  , {SDL20, SDLXX, "SDL_Log"}
+  , {SDL20, SDLXX, "SDL_LogVerbose"}
+  , {SDL20, SDLXX, "SDL_LogDebug"}
+  , {SDL20, SDLXX, "SDL_LogInfo"}
+  , {SDL20, SDLXX, "SDL_LogWarn"}
+  , {SDL20, SDLXX, "SDL_LogError"}
+  , {SDL20, SDLXX, "SDL_LogCritical"}
+  , {SDL20, SDLXX, "SDL_LogMessage"}
+  , {SDL20, SDLXX, "SDL_LogMessageV"}
+  , {SDL20, SDLXX, "SDL_LogGetOutputFunction"}
+  , {SDL20, SDLXX, "SDL_LogSetOutputFunction"}
+
+/* ------------------------------------------------------------------------- */
+/* ### SDL_assert.h ######################################################## */
+/* ------------------------------------------------------------------------- */
+
+/* ------------------------------------------------------------------------- */
+/* ### SDL_version.h ####################################################### */
+/* ------------------------------------------------------------------------- */
+  , {SDL20, SDLXX, "SDL_GetVersion"}
+  , {SDL20, SDLXX, "SDL_GetRevision"}
+  , {SDL20, SDLXX, "SDL_GetRevisionNumber"}
+
+/* ------------------------------------------------------------------------- */
+/* ### SDL_video.h ######################################################### */
+/* ------------------------------------------------------------------------- */
+  , {SDL20, SDLXX, "SDL_GetNumVideoDrivers"}
+  , {SDL20, SDLXX, "SDL_GetVideoDriver"}
+  , {SDL20, SDLXX, "SDL_VideoInit"}
+  , {SDL20, SDLXX, "SDL_VideoQuit"}
+  , {SDL20, SDLXX, "SDL_GetCurrentVideoDriver"}
+  , {SDL20, SDLXX, "SDL_GetNumVideoDisplays"}
+  , {SDL20, SDLXX, "SDL_GetDisplayName"}
+  , {SDL20, SDLXX, "SDL_GetDisplayBounds"}
+  , {SDL20, SDLXX, "SDL_GetNumDisplayModes"}
+  , {SDL20, SDLXX, "SDL_GetDisplayMode"}
+  , {SDL20, SDLXX, "SDL_GetDesktopDisplayMode"}
+  , {SDL20, SDLXX, "SDL_GetCurrentDisplayMode"}
+  , {SDL20, SDLXX, "SDL_GetClosestDisplayMode"}
+  , {SDL20, SDLXX, "SDL_GetWindowDisplayIndex"}
+  , {SDL20, SDLXX, "SDL_SetWindowDisplayMode"}
+  , {SDL20, SDLXX, "SDL_GetWindowDisplayMode"}
+  , {SDL20, SDLXX, "SDL_GetWindowPixelFormat"}
+
+
+/* ------------------------------------------------------------------------- */
+//, {SDL20, SDLXX, "SDL_AddEventWatch"}
 //, {SDL20, SDLXX, "SDL_AddHintCallback"}
 //, {SDL20, SDLXX, "SDL_AddTimer"}
 //, {SDL20, SDLXX, "SDL_AllocFormat"}
@@ -45,7 +118,6 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_AudioQuit"}
 //, {SDL20, SDLXX, "SDL_BuildAudioCVT"}
 //, {SDL20, SDLXX, "SDL_CalculateGammaRamp"}
-  , {SDL20, SDLXX, "SDL_ClearError"}
 //, {SDL20, SDLXX, "SDL_ClearHints"}
 //, {SDL20, SDLXX, "SDL_CloseAudio"}
 //, {SDL20, SDLXX, "SDL_CloseAudioDevice"}
@@ -152,19 +224,11 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_GetCPUCount"}
 //, {SDL20, SDLXX, "SDL_GetClipRect"}
 //, {SDL20, SDLXX, "SDL_GetClipboardText"}
-//, {SDL20, SDLXX, "SDL_GetClosestDisplayMode"}
 //, {SDL20, SDLXX, "SDL_GetColorKey"}
 //, {SDL20, SDLXX, "SDL_GetCurrentAudioDriver"}
-//, {SDL20, SDLXX, "SDL_GetCurrentDisplayMode"}
-//, {SDL20, SDLXX, "SDL_GetCurrentVideoDriver"}
 //, {SDL20, SDLXX, "SDL_GetCursor"}
 //, {SDL20, SDLXX, "SDL_GetDefaultAssertionHandler"}
 //, {SDL20, SDLXX, "SDL_GetDefaultCursor"}
-//, {SDL20, SDLXX, "SDL_GetDesktopDisplayMode"}
-//, {SDL20, SDLXX, "SDL_GetDisplayBounds"}
-//, {SDL20, SDLXX, "SDL_GetDisplayMode"}
-//, {SDL20, SDLXX, "SDL_GetDisplayName"}
-  , {SDL20, SDLXX, "SDL_GetError"}
 //, {SDL20, SDLXX, "SDL_GetEventFilter"}
 //, {SDL20, SDLXX, "SDL_GetHint"}
 //, {SDL20, SDLXX, "SDL_GetKeyFromName"}
@@ -177,12 +241,9 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_GetMouseState"}
 //, {SDL20, SDLXX, "SDL_GetNumAudioDevices"}
 //, {SDL20, SDLXX, "SDL_GetNumAudioDrivers"}
-//, {SDL20, SDLXX, "SDL_GetNumDisplayModes"}
 //, {SDL20, SDLXX, "SDL_GetNumRenderDrivers"}
 //, {SDL20, SDLXX, "SDL_GetNumTouchDevices"}
 //, {SDL20, SDLXX, "SDL_GetNumTouchFingers"}
-//, {SDL20, SDLXX, "SDL_GetNumVideoDisplays"}
-//, {SDL20, SDLXX, "SDL_GetNumVideoDrivers"}
 //, {SDL20, SDLXX, "SDL_GetPerformanceCounter"}
 //, {SDL20, SDLXX, "SDL_GetPerformanceFrequency"}
 //, {SDL20, SDLXX, "SDL_GetPixelFormatName"}
@@ -200,8 +261,6 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_GetRenderer"}
 //, {SDL20, SDLXX, "SDL_GetRendererInfo"}
 //, {SDL20, SDLXX, "SDL_GetRendererOutputSize"}
-  , {SDL20, SDLXX, "SDL_GetRevision"}
-  , {SDL20, SDLXX, "SDL_GetRevisionNumber"}
 //, {SDL20, SDLXX, "SDL_GetScancodeFromKey"}
 //, {SDL20, SDLXX, "SDL_GetScancodeFromName"}
 //, {SDL20, SDLXX, "SDL_GetScancodeName"}
@@ -218,12 +277,8 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_GetTicks"}
 //, {SDL20, SDLXX, "SDL_GetTouchDevice"}
 //, {SDL20, SDLXX, "SDL_GetTouchFinger"}
-  , {SDL20, SDLXX, "SDL_GetVersion"}
-//, {SDL20, SDLXX, "SDL_GetVideoDriver"}
 //, {SDL20, SDLXX, "SDL_GetWindowBrightness"}
 //, {SDL20, SDLXX, "SDL_GetWindowData"}
-//, {SDL20, SDLXX, "SDL_GetWindowDisplayIndex"}
-//, {SDL20, SDLXX, "SDL_GetWindowDisplayMode"}
 //, {SDL20, SDLXX, "SDL_GetWindowFlags"}
 //, {SDL20, SDLXX, "SDL_GetWindowFromID"}
 //, {SDL20, SDLXX, "SDL_GetWindowGammaRamp"}
@@ -231,7 +286,6 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_GetWindowID"}
 //, {SDL20, SDLXX, "SDL_GetWindowMaximumSize"}
 //, {SDL20, SDLXX, "SDL_GetWindowMinimumSize"}
-//, {SDL20, SDLXX, "SDL_GetWindowPixelFormat"}
 //, {SDL20, SDLXX, "SDL_GetWindowPosition"}
 //, {SDL20, SDLXX, "SDL_GetWindowSize"}
 //, {SDL20, SDLXX, "SDL_GetWindowSurface"}
@@ -280,8 +334,6 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_HasSSE42"}
 //, {SDL20, SDLXX, "SDL_HasScreenKeyboardSupport"}
 //, {SDL20, SDLXX, "SDL_HideWindow"}
-  , {SDL20, SDLXX, "SDL_Init"}
-  , {SDL20, SDLXX, "SDL_InitSubSystem"}
 //, {SDL20, SDLXX, "SDL_IntersectRect"}
 //, {SDL20, SDLXX, "SDL_IntersectRectAndLine"}
 //, {SDL20, SDLXX, "SDL_IsGameController"}
@@ -320,21 +372,6 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_LockMutex"}
 //, {SDL20, SDLXX, "SDL_LockSurface"}
 //, {SDL20, SDLXX, "SDL_LockTexture"}
-//, {SDL20, SDLXX, "SDL_Log"}
-//, {SDL20, SDLXX, "SDL_LogCritical"}
-//, {SDL20, SDLXX, "SDL_LogDebug"}
-//, {SDL20, SDLXX, "SDL_LogError"}
-//, {SDL20, SDLXX, "SDL_LogGetOutputFunction"}
-//, {SDL20, SDLXX, "SDL_LogGetPriority"}
-//, {SDL20, SDLXX, "SDL_LogInfo"}
-//, {SDL20, SDLXX, "SDL_LogMessage"}
-//, {SDL20, SDLXX, "SDL_LogMessageV"}
-//, {SDL20, SDLXX, "SDL_LogResetPriorities"}
-//, {SDL20, SDLXX, "SDL_LogSetAllPriority"}
-//, {SDL20, SDLXX, "SDL_LogSetOutputFunction"}
-//, {SDL20, SDLXX, "SDL_LogSetPriority"}
-//, {SDL20, SDLXX, "SDL_LogVerbose"}
-//, {SDL20, SDLXX, "SDL_LogWarn"}
 //, {SDL20, SDLXX, "SDL_LowerBlit"}
 //, {SDL20, SDLXX, "SDL_LowerBlitScaled"}
 //, {SDL20, SDLXX, "SDL_MapRGB"}
@@ -357,8 +394,6 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_PumpEvents"}
 //, {SDL20, SDLXX, "SDL_PushEvent"}
 //, {SDL20, SDLXX, "SDL_QueryTexture"}
-  , {SDL20, SDLXX, "SDL_Quit"}
-  , {SDL20, SDLXX, "SDL_QuitSubSystem"}
 //, {SDL20, SDLXX, "SDL_RWFromConstMem"}
 //, {SDL20, SDLXX, "SDL_RWFromFP"}
 //, {SDL20, SDLXX, "SDL_RWFromFile"}
@@ -414,7 +449,6 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_SetClipboardText"}
 //, {SDL20, SDLXX, "SDL_SetColorKey"}
 //, {SDL20, SDLXX, "SDL_SetCursor"}
-  , {SDL20, SDLXX, "SDL_SetError"}
 //, {SDL20, SDLXX, "SDL_SetEventFilter"}
 //, {SDL20, SDLXX, "SDL_SetHint"}
 //, {SDL20, SDLXX, "SDL_SetHintWithPriority"}
@@ -439,7 +473,6 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_SetWindowBordered"}
 //, {SDL20, SDLXX, "SDL_SetWindowBrightness"}
 //, {SDL20, SDLXX, "SDL_SetWindowData"}
-//, {SDL20, SDLXX, "SDL_SetWindowDisplayMode"}
 //, {SDL20, SDLXX, "SDL_SetWindowFullscreen"}
 //, {SDL20, SDLXX, "SDL_SetWindowGammaRamp"}
 //, {SDL20, SDLXX, "SDL_SetWindowGrab"}
@@ -476,13 +509,10 @@ SYMTABENTRY SYMTAB[] =
 //, {SDL20, SDLXX, "SDL_UpdateYUVTexture"}
 //, {SDL20, SDLXX, "SDL_UpperBlit"}
 //, {SDL20, SDLXX, "SDL_UpperBlitScaled"}
-//, {SDL20, SDLXX, "SDL_VideoInit"}
-//, {SDL20, SDLXX, "SDL_VideoQuit"}
 //, {SDL20, SDLXX, "SDL_WaitEvent"}
 //, {SDL20, SDLXX, "SDL_WaitEventTimeout"}
 //, {SDL20, SDLXX, "SDL_WaitThread"}
 //, {SDL20, SDLXX, "SDL_WarpMouseInWindow"}
-  , {SDL20, SDLXX, "SDL_WasInit"}
 //, {SDL20, SDLXX, "SDL_WriteBE16"}
 //, {SDL20, SDLXX, "SDL_WriteBE32"}
 //, {SDL20, SDLXX, "SDL_WriteBE64"}

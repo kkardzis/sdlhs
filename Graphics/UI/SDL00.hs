@@ -8,7 +8,7 @@
 -- Stability   :  experimental
 -- Portability :  non-portable
 --
--- <<//ga-beacon.appspot.com/UA-53767359-1/sdlhs/Graphics-UI-SDL00>>
+-- <<https://ga-beacon.appspot.com/UA-53767359-1/sdlhs/Graphics-UI-SDL00>>
 -------------------------------------------------------------------------------
 
 module Graphics.UI.SDL00 (

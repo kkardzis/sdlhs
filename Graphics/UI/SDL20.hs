@@ -8,7 +8,7 @@
 -- Stability   :  experimental
 -- Portability :  non-portable
 --
--- <<//ga-beacon.appspot.com/UA-53767359-1/sdlhs/Graphics-UI-SDL20>>
+-- <<https://ga-beacon.appspot.com/UA-53767359-1/sdlhs/Graphics-UI-SDL20>>
 -------------------------------------------------------------------------------
 
 module Graphics.UI.SDL20
@@ -39,8 +39,17 @@ module Graphics.UI.SDL20
   -- ** <http://wiki.libsdl.org/CategoryHints Configuration Variables>
 
   -- ** <http://wiki.libsdl.org/CategoryError Error Handling>
+ -- sdlSetError
+  , sdlGetError
+  , sdlClearError
 
   -- ** <http://wiki.libsdl.org/CategoryLog Log Handling>
+  , sdlLogSetAllPriority
+  , sdlLogSetPriority
+  , sdlLogGetPriority
+  , sdlLogResetPriorities
+  , SDL_LogCategory (..)
+  , SDL_LogPriority (..)
 
   -- ** <http://wiki.libsdl.org/CategoryAssertions Assertions>
 
@@ -54,7 +63,25 @@ module Graphics.UI.SDL20
 -- * Video
 -------------------------------------------------------------------------------
 
-  -- ** Display and Window Management
+  -- ** <http://wiki.libsdl.org/CategoryVideo Display and Window Management>
+
+  -- *** Video Drivers
+  , sdlGetVideoDrivers
+  , sdlVideoInit
+  , sdlVideoQuit
+  , sdlGetCurrentVideoDriver
+
+  -- *** Video Displays
+  , sdlGetVideoDisplays
+  , sdlGetDisplayName
+  , sdlGetDisplayBounds
+  , sdlGetDisplayModes
+  , sdlGetDesktopDisplayMode
+  , sdlGetCurrentDisplayMode
+  , sdlGetClosestDisplayMode
+  , SDL_Display
+  , SDL_DisplayMode (..)
+  , SDL_PixelFormat (..)
 
   -- ** 2D Accelerated Rendering
 

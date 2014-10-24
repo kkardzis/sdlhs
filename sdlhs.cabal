@@ -1,6 +1,6 @@
 name:          sdlhs
 version:       0.0.0
-synopsis:      bindings to libsdl also known as Simple DirectMedia Layer
+synopsis:      Haskell bindings to libSDL2 (Simple DirectMedia Layer)
 homepage:      https://github.com/kkardzis/sdlhs
 category:      Graphics
 
@@ -15,7 +15,7 @@ build-type:    Simple
 cabal-version: >=1.8
 
 description:
-  Package @sdlhs@ provides a mid-level Haskell interface to @libsdl@
+  Package @sdlhs@ provides a mid-level Haskell interface to @libSDL2@
   also known as <http://www.libsdl.org/ Simple DirectMedia Layer>.
   SDL is a cross-platform development library designed to provide
   low level access to audio, keyboard, mouse, joystick, and graphics
@@ -28,19 +28,19 @@ description:
   <http://choosealicense.com/licenses/isc/ ISC License>
   (MIT\/BSD-style, see <LICENSE> file for details).
   .
-  <<//ga-beacon.appspot.com/UA-53767359-1/sdlhs>>
+  <<https://ga-beacon.appspot.com/UA-53767359-1/sdlhs>>
 
 
 -------------------------------------------------------------------------------
 extra-source-files:
-  Graphics/UI/SDL00/SDL2-2.0.3/COPYING
+  Graphics/UI/SDL00/SDL2-2.0.3/COPYING.txt
   Graphics/UI/SDL00/SDL2-2.0.3/*.h
-  README.md
 
--- extra-doc-files:
---   docs/examples/*.hs
---   docs/index.html
---   docs/*.md
+extra-doc-files:
+  docs/index.html
+  docs/*.md
+  README.md
+  LICENSE
 
 
 -------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ library
   build-tools: hsc2hs
 
   build-depends:
-    base ==4.*, rtld
+    base ==4.*, utf8-string, rtld
 
   exposed-modules:
     Graphics.UI.SDL00

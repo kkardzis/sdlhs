@@ -32,7 +32,7 @@ import Data.Bits       ((.|.), (.&.))
 -- import Data.IORef      (IORef)
 
 import Foreign.C.Types
--- import Foreign.Ptr
+import Foreign.Ptr
 
 #include "LibC0.c"
 
@@ -69,6 +69,13 @@ fromCInt cval =
       (v,t) = (show cval, show $ typeOf $ snd $ head enums)
   in  maybe enumE id $ lookup cval enums
 
+fromUint32 :: (ENUM a, Typeable a) => C.Uint32 -> a
+fromUint32 cval =
+  let enums = map (\enum -> (toUint32 enum, enum)) enumlist
+      enumE = error $ concat ["<sdlhs> unknown constant (", v, ") -> ", t]
+      (v,t) = (show cval, show $ typeOf $ snd $ head enums)
+  in  maybe enumE id $ lookup cval enums
+
 
 -------------------------------------------------------------------------------
 data SDLE = SDLE String String
@@ -82,8 +89,10 @@ instance Show SDLE where
     . showString ": " . showString desc
 
 
+
 -------------------------------------------------------------------------------
-deriving instance (Show SDL_InitFlag)
+-- ### SDL.h ##################################################################
+-------------------------------------------------------------------------------
 
 #{ENUM SDL_InitFlag       \
 , SDL_INIT_TIMER          \
@@ -93,4 +102,119 @@ deriving instance (Show SDL_InitFlag)
 , SDL_INIT_HAPTIC         \
 , SDL_INIT_GAMECONTROLLER \
 , SDL_INIT_EVENTS         }
+
+deriving instance (Show SDL_InitFlag)
+
+
+
+-------------------------------------------------------------------------------
+-- ### SDL_hints.h ############################################################
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+-- ### SDL_error.h ############################################################
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+-- ### SDL_log.h ##############################################################
+-------------------------------------------------------------------------------
+
+#{ENUM SDL_LogCategory         \
+, SDL_LOG_CATEGORY_APPLICATION \
+, SDL_LOG_CATEGORY_ERROR       \
+, SDL_LOG_CATEGORY_ASSERT      \
+, SDL_LOG_CATEGORY_SYSTEM      \
+, SDL_LOG_CATEGORY_AUDIO       \
+, SDL_LOG_CATEGORY_VIDEO       \
+, SDL_LOG_CATEGORY_RENDER      \
+, SDL_LOG_CATEGORY_INPUT       \
+, SDL_LOG_CATEGORY_TEST        }
+
+#{ENUM SDL_LogPriority      \
+, SDL_LOG_PRIORITY_VERBOSE  \
+, SDL_LOG_PRIORITY_DEBUG    \
+, SDL_LOG_PRIORITY_INFO     \
+, SDL_LOG_PRIORITY_WARN     \
+, SDL_LOG_PRIORITY_ERROR    \
+, SDL_LOG_PRIORITY_CRITICAL }
+
+deriving instance (Typeable SDL_LogPriority)
+deriving instance (Show     SDL_LogPriority)
+
+
+
+-------------------------------------------------------------------------------
+-- ### SDL_assert.h ###########################################################
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+-- ### SDL_version.h ##########################################################
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+-- ### SDL_video.h ############################################################
+-------------------------------------------------------------------------------
+newtype SDL_Display = SDL_Display CInt
+  deriving (Show, Eq)
+
+-------------------------------------------------------------------------------
+data SDL_DisplayMode = SDL_DisplayMode (Int,Int,Int) SDL_PixelFormat
+  deriving (Show)
+
+toHS'SDL_DisplayMode :: C.SDL_DisplayMode -> SDL_DisplayMode
+toHS'SDL_DisplayMode (C.SDL_DisplayMode f w h r _) =
+  let whr = (fromIntegral w, fromIntegral h, fromIntegral r)
+  in  SDL_DisplayMode whr (fromUint32 f)
+
+toCC'SDL_DisplayMode :: SDL_DisplayMode -> C.SDL_DisplayMode
+toCC'SDL_DisplayMode (SDL_DisplayMode (w,h,r) f) =
+  C.SDL_DisplayMode (toUint32 f)
+    (fromIntegral w) (fromIntegral h) (fromIntegral r) nullPtr
+
+
+
+-------------------------------------------------------------------------------
+-- ### SDL_pixels.h ###########################################################
+-------------------------------------------------------------------------------
+
+#{ENUM SDL_PixelFormat        \
+, SDL_PIXELFORMAT_UNKNOWN     \
+, SDL_PIXELFORMAT_INDEX1LSB   \
+, SDL_PIXELFORMAT_INDEX1MSB   \
+, SDL_PIXELFORMAT_INDEX4LSB   \
+, SDL_PIXELFORMAT_INDEX4MSB   \
+, SDL_PIXELFORMAT_INDEX8      \
+, SDL_PIXELFORMAT_RGB332      \
+, SDL_PIXELFORMAT_RGB444      \
+, SDL_PIXELFORMAT_RGB555      \
+, SDL_PIXELFORMAT_BGR555      \
+, SDL_PIXELFORMAT_ARGB4444    \
+, SDL_PIXELFORMAT_RGBA4444    \
+, SDL_PIXELFORMAT_ABGR4444    \
+, SDL_PIXELFORMAT_BGRA4444    \
+, SDL_PIXELFORMAT_ARGB1555    \
+, SDL_PIXELFORMAT_RGBA5551    \
+, SDL_PIXELFORMAT_ABGR1555    \
+, SDL_PIXELFORMAT_BGRA5551    \
+, SDL_PIXELFORMAT_RGB565      \
+, SDL_PIXELFORMAT_BGR565      \
+, SDL_PIXELFORMAT_RGB24       \
+, SDL_PIXELFORMAT_BGR24       \
+, SDL_PIXELFORMAT_RGB888      \
+, SDL_PIXELFORMAT_RGBX8888    \
+, SDL_PIXELFORMAT_BGR888      \
+, SDL_PIXELFORMAT_BGRX8888    \
+, SDL_PIXELFORMAT_ARGB8888    \
+, SDL_PIXELFORMAT_RGBA8888    \
+, SDL_PIXELFORMAT_ABGR8888    \
+, SDL_PIXELFORMAT_BGRA8888    \
+, SDL_PIXELFORMAT_ARGB2101010 \
+, SDL_PIXELFORMAT_YV12        \
+, SDL_PIXELFORMAT_IYUV        \
+, SDL_PIXELFORMAT_YUY2        \
+, SDL_PIXELFORMAT_UYVY        \
+, SDL_PIXELFORMAT_YVYU        }
+
+deriving instance (Typeable SDL_PixelFormat)
+deriving instance (Show     SDL_PixelFormat)
 
